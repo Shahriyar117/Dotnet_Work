@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Employee_Directory.ViewModels.DepartmentViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+<div class="col-12 border">
+    <div class=" d-flex border vh-100 flex-shrink-1  col-md-4">
+      <div class=" p-2 bg-dark border border-2 border-dark">
+          <nav class="navbar navbar-expand-lg navbar-dark " >
+            <div class="container justify-content-center" >
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColapseVertical" aria-controls="navbarColapseVertical" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColapseVertical">
+                    <ul class="navbar-nav d-flex-start flex-column">
+                        <li  class="text-center">
+                            <h4>e<span>mployeeDirectory</span></h4>
+                        </li>
+                        <li class="container-fluid text-center">
+                            <a class="navbar-brand" href="#">
+                                <img src="~/images/Shahriyar.jpeg" alt="Avatar Logo" class=" rounded-circle w-50 vh-25"> 
+                            </a>
+                        </li><hr class="text-white"/>
+                        @foreach (var item in Model)
+                        {
+                            <div class=" border border-2 border-white m-1" >
+                                <li class="nav-item gap-2 text-center ">
+                                   @Html.ActionLink(@item.DepartmentName,"Edit","Department",new{id=item.DepartmentID, @class="nav-link"})
+                                </li>
+                            </div>
+                         }
+                         <hr class="mt-5 text-white"/>
+                        <li class="nav-item p-2 mt-5 gap-3 text-center bg-white rounded-pill">
+                            @Html.ActionLink("Insert","Create","Department",new{@class="nav-link"})
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+          </nav>
+      </div>
+      <div class="p-2 bg-white col-md-8 d-flex align-items-start justify-content-around">
+            <div class="card border border-2 border-primary m-2 flex-item">
+                <div class="card-header text-white bg-primary">
+                    <h3>Employees Registered</h3>
+                </div>
+                <div class="card-body border border-2 border-primary">
+                    <ul>
+                      <li>Employee</li>
+                      <li>
+                          <a asp-controller="Employee" asp-action="Create" style="width:auto">CreateEmployees</a>
+                      </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Employee" asp-action="Index" class="btn btn-dark" style="width:auto">Watch Employees</a>
+                </div>
+            </div>  
+       </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
+    <div class="col-md-2 position-absolute top-30 start-0 h-100 border border-10 border-white bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark " >
+        <div class="container justify-content-center" >
+            <div>
+                <div class="container-fluid text-center">
+                    <a class="navbar-brand" href="#">
+                        <img src="~/images/Shahriyar.jpeg" alt="Avatar Logo" class="rounded-circle w-50"> 
+                    </a>
+                 </div><hr />
+                <div class="container-fluid text-center">
+                    <a class="navbar-brand mt-4" asp-action="Index" asp-controller="Department">
+                        <h3>Departments</h3>
+                    </a>
+                </div><hr />
+                <ul class="navbar-nav flex-column flex-grow-1 bg-white justify-content-center">                       
+                    @foreach (var item in Model)
+                    {
+                        <div class=" border border-2 border-primary" >
+                            <li class="nav-item gap-2 text-center ">
+                            @Html.ActionLink(@item.DepartmentName,"Edit","Department",new{id=item.DepartmentID, @class="nav-link"})
+                            </li>
+                        </div>
+                    }
+                    <div class="border border-2 border-primary" >
+                        <li class="nav-item gap-2 text-center ">
+                            @Html.ActionLink("Insert","Create","Department",new{@class="nav-link"})
+                        </li>
+                    </div>
+                </ul> 
+            </div>
+        </div>
+      </nav>
+    </div>
+    <div class="col-md-10">
+        
+     </div>
+</div>
+*@
+

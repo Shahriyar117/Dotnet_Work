@@ -1,0 +1,255 @@
+﻿@*@model IEnumerable<Employee_Directory.ViewModels.EmployeeViewModel>*@
+    
+@model X.PagedList.IPagedList<Employee_Directory.Models.Employee>
+@using PagedList
+@using X.PagedList.Mvc.Core
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center bg-dark text-white mt-2 p-2">
+    <h3>Employees</h3>
+</div><hr />
+<div class="container p-3">
+    <div class="row pt-4 m-2">
+        <div class="col-4 text-end">
+             @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+            {
+                <div class="d-flex p-2 m-2">
+                    @Html.TextBox("search", ViewBag.CurrentFilter as string, new{@class="form-control me-sm-2"})
+                    <button type="submit" class="btn btn-secondary text-dark my-2 my-sm-0">Search</button>
+                </div>
+            }
+		</div>
+        <div class="col-8 text-end">       
+            <div class="btn-group text-end">
+              <button type="button" class="btn btn-primary">Sorting Order</button>
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="bg-dark text-white text-center"><h6 >Employee Name</h6></li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="dropdown-item">
+                    @Html.ActionLink("Ascending Order", "Index", new { sortOrder = ViewBag.NameSortParmAsc, currentFilter=ViewBag.CurrentFilter,@class="dropdown-item" })
+                </li>
+                <li class="dropdown-item">
+                    @Html.ActionLink("Descending Order", "Index", new { sortOrder = ViewBag.NameSortParmDes,currentFilter=ViewBag.CurrentFilter,@class="dropdown-item" })
+                </li>
+              </ul>
+            </div>
+		</div>
+	</div>  
+    <div class="align-items-center justify-content-center">
+    <div class=" row">
+        <div class="text-center">
+            <div class="col-md-12 border border-2 border-dark p-2 bg-white">
+                <div class="border border-2 border-white bg-primary text-white text-center">
+                    <h3>Employees</h3>
+                </div><br />
+                <div class="border border-2 border-dark bg-dark text-light text-center">
+                    <a asp-controller="Employee" asp-action="Create" class="btn text-white">
+                   <strong><i class="bi bi-plus-circle"></i> &nbsp;Insert</strong>
+			    </a>
+                </div><br />
+                <table class="table table-hover table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr class="link-dark bg-primary">
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeTitle)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Login)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().UserRoles)
+                            </th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) 
+                    {
+                        <tr class="bg-white">
+                            <td>
+                                <img src="~/images/@item.ProfilePicture"   
+                                    class="rounded-circle"   
+                                    height="40" width="40"   
+                                    asp-append-version="true" />
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Login)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserRoles)
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@item.EmployeeID">
+                                    <i class="bi bi-pencil-square"></i>Edit</a>
+                            </td>
+                        </tr>
+                   }
+                    </tbody>
+                </table>
+            </div>      
+        </div>
+    </div>
+  </div>
+</div>
+<div>
+<div class="container pagination pagination-sm">
+    <div class="pagination-item" >
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter,@class="page-link" }))
+    </div>
+</div>
+
+
+
+@*
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-8">
+            <h2>Employees</h2>
+		</div>
+        <div class="col-4 text-end">
+            <a asp-controller="Employee" asp-action="Create" class="btn btn-light">
+               <i class="bi bi-plus-circle"></i> &nbsp; Create New 
+			</a>
+		</div>
+	</div>
+    <br /><br />
+
+<table class="table table-bordered table-striped table-condensed" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                 @Html.ActionLink("EmployeeName", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRoles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CellPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentID)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRoles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomePhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentID)
+            </td>
+            <td class="text-end">
+                <a asp-action="Edit" asp-route-id="@item.EmployeeID">
+                    <i class="bi bi-pencil-square"></i>Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeID">
+                    <i class="bi bi-ticket-detailed"></i>Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeID">
+                     <i class="bi bi-trash-fill"></i>Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+*@
+
+
+
+ 
+@*<form asp-controller="Employee" asp-action="Index">
+    <div>
+        Find by name: @Html.TextBox("search")  
+        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="search" />
+    </div>
+</form>*@
+
+
+
+ @*<p>
+        @Html.RadioButton("option","Department")<text>Department</text>       
+        @Html.RadioButton("option","EmployeeName")<text>Name</text>       
+        @Html.RadioButton("option","Email")<text>Email</text>
+        Title: <input type="text" name="Search" />
+        <input type="submit" value="Search" />
+    </p>*@
+
+
+    @*<th>
+                @Html.DisplayNameFor(model => model.ProfileImage)
+            </th>*@
+
+ 
+            @*<td>  
+                <img src="~/images/@item.ProfileImage"   
+                        class="rounded-circle"   
+                        height="80" width="60"   
+                        asp-append-version="true" />
+            </td>*@

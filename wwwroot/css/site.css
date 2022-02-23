@@ -1,0 +1,16 @@
+.dflex form {
+    flex-grow: 1
+}
+html,body{
+    height:100%;
+    margin:0;
+    padding:0;
+}
+.bg_image1 {
+    background-image: url('https://th.bing.com/th/id/R.d078968bc905921e539a6f954e1e2ca1?rik=BXB%2bVL7RbwJNkg&riu=http%3a%2f%2fwww.rambina.com%2fwp-content%2fuploads%2f2016%2f05%2fwebsite-design-background-1.jpg&ehk=sfp4qsZtSaEdZFO%2bNlHNccV7SjEvam3NJUHkws%2b2QxY%3d&risl=&pid=ImgRaw&r=0');
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

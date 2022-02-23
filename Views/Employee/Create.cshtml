@@ -1,0 +1,210 @@
+﻿@model Employee_Directory.ViewModels.EmployeeViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center bg-dark text-white mt-2 p-2">
+    <h3>Create Employee</h3>
+</div><hr />
+<div class="align-items-start justify-content-center">
+<div class="row vh-100">
+    <div class="text-center">
+        <div class="col-6 border border-2 border-primary bg-white">
+            <div class="border border-2 border-primary bg-primary text-white text-center">
+                <h3>Employee</h3>
+            </div><br />
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="EmployeeName" class="col-sm-4 border border-primary bg-secondary text-dark">EmployeeName</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="EmployeeName" class="form-control form-control-sm m-0" placeholder = " Enter Employee Name">
+                    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="EmployeeTitle" class="col-sm-4 border border-primary bg-secondary">EmployeeTitle</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="EmployeeTitle" class="form-control form-control-sm m-0" placeholder = " Enter Employee Title">
+                    <span asp-validation-for="EmployeeTitle" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="Email" class="col-sm-4 border border-primary bg-secondary">Email</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="Email" class="form-control form-control-sm m-0" placeholder = " Enter Employee Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="Login" class="col-sm-4 border border-primary bg-secondary">Login</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="Login" class="form-control form-control-sm m-0" placeholder = " Enter Employee Login">
+                    <span asp-validation-for="Login" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="Password" class="col-sm-4 border border-primary bg-secondary">Password</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="Password" class="form-control form-control-sm m-0" placeholder = " Enter Employee Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="UserRoles" class="col-sm-4 border border-primary bg-secondary">Level</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "--Select Role--", new {@class = "form-control form-control-sm"})
+                    <span asp-validation-for="UserRoles" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="Address" class="col-sm-4 border border-primary bg-secondary">Address</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="Address" class="form-control form-control-sm m-0" placeholder = "Enter Employee Address">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="WorkPhone" class="col-sm-4 border border-primary bg-secondary">Work Phone</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="WorkPhone" class="form-control form-control-sm m-0" placeholder = "Enter Employee Work Phone">
+                    <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="CellPhone" class="col-sm-4 border border-primary bg-secondary">Cell Phone</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="CellPhone" class="form-control form-control-sm m-0" placeholder = " Enter Employee Cell Phone">
+                    <span asp-validation-for="CellPhone" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="HomePhone" class="col-sm-4 border border-primary bg-secondary">Home Phone</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="HomePhone" class="form-control form-control-sm m-0" placeholder = " Enter Employee Home Phone">
+                    <span asp-validation-for="HomePhone" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="DepartmentID" class="col-sm-4 border border-primary bg-secondary">Department</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                     @Html.DropDownList("DepartmentID", @ViewBag.DepartmentName as SelectList,"--Select Department--",new{@class="form-control form-control-sm"})
+                    <span asp-validation-for="DepartmentID" class="text-danger"></span>
+                  </div>
+               </div>
+               <div class="form-group border border-2 border-primary ms-2 me-2 bg-white">  
+                    @*<label asp-for="ProfileImage" class="control-label"></label>  *@
+                    <div class="custom-file border border-2 border-primary m-2 bg-white">  
+                        <input asp-for="ProfileImage" class="custom-file-input form-control" id="customFile">  
+                        <label class="custom-file-label" for="customFile">Choose file</label>  
+                    </div>  
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>  
+                </div>
+               <br />
+               <div class="text-end m-2">
+                   <button type="submit" class="btn btn-dark text-white">Create</button>
+                   <div class="btn btn-dark text-white"> 
+                       @Html.ActionLink("Cancel","Index","Employee", new{@class="text-white"})
+                   </div>
+               </div>
+            </form>
+        </div>      
+    </div>
+</div>
+</div>
+
+@section scripts{  
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        }); 
+</script>
+}
+
+
+@*
+<h1>Create</h1>
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Employee" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmployeeName" class="control-label"></label>
+                <input asp-for="EmployeeName" class="form-control" placeholder = "Enter Employee Name" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeTitle" class="control-label"></label>
+                <input asp-for="EmployeeTitle" class="form-control" placeholder = "Enter Employee Name" />
+                <span asp-validation-for="EmployeeTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" placeholder = " Enter Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label"></label>
+                <input asp-for="Login" class="form-control" placeholder = " Enter UserName or Login" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" placeholder = " Enter Password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRoles" class="control-label"></label>
+                <div class="col-md-10">    
+                  @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, "--Select Role--", new {@class = "form-control"})
+                </div>
+                <span asp-validation-for="UserRoles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkPhone" class="control-label"></label>
+                <input asp-for="WorkPhone" class="form-control" placeholder = " Enter Wrok Phone Number"/>
+                <span asp-validation-for="WorkPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CellPhone" class="control-label"></label>
+                <input asp-for="CellPhone" class="form-control" placeholder = " Enter Cell Phone Number"/>
+                <span asp-validation-for="CellPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomePhone" class="control-label"></label>
+                <input asp-for="HomePhone" class="form-control" placeholder = " Enter Home Phone Number"/>
+                <span asp-validation-for="HomePhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" placeholder = " Enter Address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               <label asp-for="DepartmentID" class="control-label"></label><br />
+                @Html.DropDownList("DepartmentID", @ViewBag.DepartmentName as SelectList,"--Select Department--",new{@class="form-control"})
+                <span asp-validation-for="DepartmentID" class="text-danger"></span>  
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+
+
+@*<div class="form-group">  
+                <label asp-for="ProfileImage" class="control-label"></label>  
+                <div class="custom-file">  
+                    <input asp-for="ProfileImage" class="custom-file-input" id="customFile">  
+                    <label class="custom-file-label" for="customFile">Choose file</label>  
+                </div>  
+                <span asp-validation-for="ProfileImage" class="text-danger"></span>  
+            </div>*@

@@ -1,0 +1,74 @@
+﻿@model EmployeeDirectory.ViewModel.EditRoleViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <h4>Role</h4>
+    <hr />
+    <div class="row">
+        <div class="col-6 border border-2 border-primary bg-white">
+            <div class="border border-2 border-primary bg-primary text-white text-center">
+                <h3>Role</h3>
+            </div><br />
+            <form method="post">
+                <div class="text-dark bg-white text-align-left"> 
+                    <p class="text-dark">Are you sure,you want to delete this?</p>
+                </div>
+                <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="RoleName" class="col-sm-4 col-form-label border border-primary bg-secondary">Role Name</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="RoleName" class="form-control p-2 m-0" disabled>
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                  </div>
+               </div><br />
+               <div class="text-end m-2">
+                   <button type="submit" class="btn btn-dark text-white">Delete</button>
+                   <div class="btn btn-dark text-white"> 
+                       @Html.ActionLink("Cancel","Index","Role", new{@class="text-white"})
+                   </div>
+               </div>
+            </form>
+        </div>
+        @*<div class="col-md-6">
+            <dl>
+                 <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.RoleName) 
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.RoleName)
+                </dd>      
+            </dl>    
+            <form asp-action="Delete" >
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-action="Index">Back to List</a>
+            </form>
+        </div>*@
+        <div class="col-md-6">
+            <div class="card border border-2 border-primary">
+                <div class="card-header text-white bg-primary border border-2 border-primary">
+                    <h3>Users in this role</h3>
+                </div>
+                <div class="card-body ">
+                    <ul>
+                    @if (Model.Users.Any())
+                    {
+                        foreach (var user in Model.Users)
+                        {
+                            <li class="card-title">@user</li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="card-title">None at the moment</li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+

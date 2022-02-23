@@ -1,0 +1,75 @@
+﻿@model EmployeeDirectory.ViewModel.CreateRoleViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center bg-dark text-white mt-2 p-2">
+    <h3>Create Role</h3>
+</div><hr />
+<div class="align-items-start justify-content-center">
+  <div class=" row">
+    <div class="text-center">
+        <div class="col-6 border border-2 border-primary bg-white">
+            <div class="border border-2 border-primary bg-primary text-white text-center">
+                <h3>Role</h3>
+            </div><br />
+            <form method="post">
+                <div class="form-group row border border-2 border-primary ms-2 me-2 bg-white">
+                  <label asp-for="RoleName" class="col-sm-4 col-form-label border border-primary bg-secondary">Role Name</label>
+                  <div class="col-sm-8 border border-primary bg-primary">
+                    <input asp-for="RoleName" class="form-control p-2 m-0" placeholder = " Enter Role Name">
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                  </div>
+               </div><br />
+               <div class="text-end m-2">
+                   <button type="submit" class="btn btn-dark text-white">Create</button>
+                   <div class="btn btn-dark text-white"> 
+                       @Html.ActionLink("Cancel","Index","Role", new{@class="text-white"})
+                   </div>
+               </div>
+            </form>
+        </div>      
+    </div>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+@*<h1>Create</h1>
+
+<h4>Role</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label>
+                <input asp-for="RoleName" class="form-control" placeholder = " Enter Role Name"/>
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+
+
+
+
+
+
+
+
+
+
