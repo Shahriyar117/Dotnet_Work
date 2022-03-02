@@ -1,0 +1,29 @@
+﻿@model IEnumerable<EmployeeDirectoryProject.ViewModels.DepartmentViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class= "col-md-4 mt-2 bg-white border border-primary">
+        <ul class="list-group mt-2">
+            <h3 class="text-center">Department</h3>
+            <hr class="bg-dark mb-2"/>
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">
+                      @Html.ActionLink(@item.DepartmentName,"Edit","Department",new{id=item.DepartmentID})
+                </li>
+            }
+            <hr class="bg-dark mt-5"/>
+            <li class="list-group-item text-center bg-primary mb-2 rounded">
+                <a asp-controller="Department" asp-action="Create" class="btn">
+                   <i class="bi bi-plus-circle"></i> &nbsp;Insert 
+			    </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

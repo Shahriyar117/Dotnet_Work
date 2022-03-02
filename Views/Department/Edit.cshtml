@@ -1,0 +1,37 @@
+﻿@model EmployeeDirectoryProject.ViewModels.DepartmentViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="mt-2">
+    <h3>Edit Department</h3>
+</div><hr />
+<div class="align-items-start justify-content-center">
+<div class="row">
+    <div class="col-md-8 bg-white p-2">
+        <form method="post">
+            <input type="hidden" asp-for="DepartmentID"/>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="DepartmentName" class="col-sm-3 text-dark">DepartmentName</label>
+                <div class="col-sm-9">
+                <input asp-for="DepartmentName" class="form-control form-control-sm m-0" placeholder = " Enter Department Name">
+                <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="text-end m-2">
+               <button type="submit" asp-action="Edit" class="btn btn-primary text-white">Update</button>
+                <div class="btn btn-dark text-white"> 
+                    @Html.ActionLink("Delete","Delete","Department", new{@class="text-white",id=Model.DepartmentID}) 
+                </div> 
+                <div class="btn btn-dark text-white"> 
+                    @Html.ActionLink("Cancel","Index","Department", new{@class="text-white"}) 
+                </div>
+            </div>
+        </form>
+    </div>      
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

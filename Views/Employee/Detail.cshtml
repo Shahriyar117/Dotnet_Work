@@ -1,0 +1,89 @@
+﻿@model EmployeeDirectoryProject.ViewModels.EditEmployeeViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+<div>
+    <h3>Employee Detail</h3>
+</div><hr />
+<div class="row">
+   <div class="col-md-8 bg-white m-2">
+     <dl class="row">
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.EmployeeTitle)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.EmployeeTitle)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.UserRoles)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.UserRoles)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.WorkPhone)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.WorkPhone)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.CellPhone)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.CellPhone)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.HomePhone)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.HomePhone)
+        </dd>
+       <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.DepartmentID)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.DepartmentID)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.isManoftheMonth)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.isManoftheMonth)
+        </dd>
+    </dl>
+    <div class="text-end m-2">
+        <div class="btn btn-dark text-white"> 
+                @Html.ActionLink("Back","Index","Employee", new{@class="text-white"}) 
+        </div>               
+     </div>    
+  </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

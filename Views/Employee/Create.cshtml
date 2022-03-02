@@ -1,0 +1,122 @@
+﻿@model EmployeeDirectoryProject.ViewModels.EmployeeViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="mt-2">
+    <h3>Create Employee</h3>
+</div><hr />
+<div class="align-items-start justify-content-center">
+<div class="row">
+    <div class="col-md-8 bg-white p-2">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="EmployeeName" class="col-sm-3 text-dark">EmployeeName</label>
+                <div class="col-sm-9">
+                <input asp-for="EmployeeName" class="form-control form-control-sm m-0" placeholder = " Enter Employee Name">
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="EmployeeTitle" class="col-sm-3 text-dark">EmployeeTitle</label>
+                <div class="col-sm-9">
+                <input asp-for="EmployeeTitle" class="form-control form-control-sm m-0" placeholder = " Enter Employee Title">
+                <span asp-validation-for="EmployeeTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="Email" class="col-sm-3">Email</label>
+                <div class="col-sm-9">
+                <input asp-for="Email" class="form-control form-control-sm m-0" placeholder = " Enter Employee Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="Login" class="col-sm-3">Login</label>
+                <div class="col-sm-9">
+                <input asp-for="Login" class="form-control form-control-sm m-0" placeholder = " Enter Employee Login">
+                <span asp-validation-for="Login" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-2 bg-white">
+                <label asp-for="Password" class="col-sm-3">Password</label>
+                <div class="col-sm-9">
+                <input asp-for="Password" class="form-control form-control-sm m-0" placeholder = " Enter Employee Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="UserRoles" class="col-sm-3">Level</label>
+                <div class="col-sm-9">
+                @Html.DropDownList("UserRoles",@ViewBag.RoleName as SelectList, "--Select Role--", new {@class = "form-control form-control-sm"})
+                <span asp-validation-for="UserRoles" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="Address" class="col-sm-3">Address</label>
+                <div class="col-sm-9">
+                <input asp-for="Address" class="form-control form-control-sm m-0" placeholder = "Enter Employee Address">
+                <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="WorkPhone" class="col-sm-3">Work Phone</label>
+                <div class="col-sm-9">
+                <input asp-for="WorkPhone" class="form-control form-control-sm m-0" placeholder = "Enter Employee Work Phone">
+                <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="CellPhone" class="col-sm-3">Cell Phone</label>
+                <div class="col-sm-9">
+                <input asp-for="CellPhone" class="form-control form-control-sm m-0" placeholder = " Enter Employee Cell Phone">
+                <span asp-validation-for="CellPhone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="HomePhone" class="col-sm-3">Home Phone</label>
+                <div class="col-sm-9">
+                <input asp-for="HomePhone" class="form-control form-control-sm m-0" placeholder = " Enter Employee Home Phone">
+                <span asp-validation-for="HomePhone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row m-1 bg-white">
+                <label asp-for="DepartmentID" class="col-sm-3">Department</label>
+                <div class="col-sm-9">
+                    @Html.DropDownList("DepartmentID", @ViewBag.DepartmentName as SelectList,"--Select Department--",new{@class="form-control form-control-sm"})
+                <span asp-validation-for="DepartmentID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group m-1 bg-white">  
+                @*<label asp-for="ProfileImage" class="control-label"></label>  *@
+                <div class="custom-file m-1 bg-white">  
+                    <input asp-for="ProfileImage" class="custom-file-input form-control" id="customFile">  
+                    <label class="custom-file-label" for="customFile">Choose file</label>  
+                </div>  
+                <span asp-validation-for="ProfileImage" class="text-danger"></span>  
+            </div>
+            <div class="form-group m-1 bg-white">
+                <input asp-for="isManoftheMonth" type="checkbox" class="custom-control-input">
+                <label class="custom-control-label" asp-for="isManoftheMonth">@Html.DisplayNameFor(m => m.isManoftheMonth)</label>
+            </div>
+            <br />
+            <div class="text-end m-2">
+                <button type="submit" class="btn btn-primary text-white">Create</button>
+                <div class="btn btn-dark text-white"> 
+                    @Html.ActionLink("Cancel","Index","Employee", new{@class="text-white"})
+                </div>
+            </div>
+        </form>
+    </div>      
+</div>
+
+
+@section scripts{  
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        }); 
+    </script>
+     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

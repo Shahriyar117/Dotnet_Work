@@ -1,0 +1,169 @@
+﻿@*@model IEnumerable<Employee_Directory.ViewModels.EmployeeViewModel>*@
+    
+@model X.PagedList.IPagedList<EmployeeDirectoryProject.Models.Employee>
+@using PagedList
+@using X.PagedList.Mvc.Core
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container p-3">
+    <div class="row m-2">
+        <div class="col-md-8 p-2">
+            <div class="col-sm-3">
+                <div class="row mb-5">
+                    <h2>Employees</h2>
+                </div>
+                <div class="row mb-2">
+                    <a asp-controller="Employee" asp-action="Create" class="btn btn-primary">
+                       <i class="bi bi-plus-circle"></i> &nbsp;Insert 
+			        </a>
+                </div>
+                <div class="row">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary">Sorting Filter</button>
+                      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            @Html.ActionLink("Employee Name", "Index", new { sortOrder = @ViewBag.NameSortParmAsc, currentFilter=ViewBag.CurrentFilter,@class="dropdown-item" })
+                        </li>
+                        <li class="dropdown-item">
+                            @Html.ActionLink("Department", "Index", new { sortOrder = @ViewBag.DepSortParmAsc,currentFilter=ViewBag.CurrentFilter,@class="dropdown-item" })
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+		</div>
+        <div class="col-md-4 text-end bg-white">   
+             @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+            {
+                <div class="row p-2 border border-primary">
+                    Department :@Html.TextBox("search")
+                    Login :@Html.TextBox("searchlogin")               
+                    Email: @Html.TextBox("searchemail")
+                    <button type="submit" class="btn btn-primary mt-2 text-dark border border-primary ">Search</button>
+                </div>
+            }
+		</div>
+	</div>  
+    <div class="m-2">
+       <div class=" row ">
+            <div class="col-md-12 border border-2 border-dark p-2 bg-white">
+                <table class="table table-hover table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr class="link-dark bg-primary">
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeTitle)
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                User Name
+                            </th>
+                            <th>
+                                Department Name                              
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().isManoftheMonth)
+                            </th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) 
+                    {
+                        <tr class="bg-white">
+                            <td>
+                                <img src="~/images/@item.ProfilePicture"   
+                                    class="rounded-circle"   
+                                    height="40" width="40"   
+                                    asp-append-version="true" />
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeTitle)
+                            </td>
+                            <td>
+                                 @if(item.ApplicationUser != null)
+                                    {
+                                        @item.ApplicationUser.Email;
+                                    }           
+                            </td>
+                            <td>
+                                 @if(item.ApplicationUser != null)
+                                    {
+                                        @item.ApplicationUser.UserName;
+                                    }
+                            </td>
+                            <td>
+                                @if(item.Department != null)
+                                    {
+                                        @item.Department.DepartmentName;
+                                    }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.isManoftheMonth)
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-controller="Employee" asp-route-id="@item.EmployeeID">
+                                    <i class="bi bi-pencil-square"></i>Edit</a>
+                            </td>
+                        </tr>
+                   }
+                    </tbody>
+                </table>
+            </div> 
+       </div>
+    </div>
+</div>
+<div class="container pagination pagination-sm">
+    <div class="pagination-item" >
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter,@class="page-link" }))
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+ 
+@*<form asp-controller="Employee" asp-action="Index">
+    <div>
+        Find by name: @Html.TextBox("search")  
+        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="search" />
+    </div>
+</form>*@
+
+
+
+ @*<p>
+        @Html.RadioButton("option","Department")<text>Department</text>       
+        @Html.RadioButton("option","EmployeeName")<text>Name</text>       
+        @Html.RadioButton("option","Email")<text>Email</text>
+        Title: <input type="text" name="Search" />
+        <input type="submit" value="Search" />
+    </p>*@
+
+
+    @*<th>
+                @Html.DisplayNameFor(model => model.ProfileImage)
+            </th>*@
+
+ 
+            @*<td>  
+                <img src="~/images/@item.ProfileImage"   
+                        class="rounded-circle"   
+                        height="80" width="60"   
+                        asp-append-version="true" />
+            </td>*@
